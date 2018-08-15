@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+	color: red;
+}
+
+th{
+	color: red;
+}
+
+
+</style>
+</head>
+<body>
+
+<h3>Bé tập tính</h3>
+
+<table>
+  <tr>
+    <td>Số thứ nhất</td>
+    <td><input type="number" id="numero1" onfocusout="verifyNumero1()"></td>
+    <td><input type="radio" name="operator" id="idSum">Cộng<br></td>
+    <td><input type="radio" name="operator" id="idSub">Trừ<br></td>
+  </tr>
+  <tr>
+    <td>Số thứ hai</td>
+    <td><input type="number" id="numero2" onfocusout="verifyNumero2()"></td>
+    <td><input type="radio" name="operator" id="idMul">Nhân<br></td>
+    <td><input type="radio" name="operator" id="idDiv">Chia<br></td>
+  </tr>
+  <tr>
+    <td>Kết quả</td>
+    <td><input type="number" id="result"></td>
+    <td><button onclick="process()"> Tính </button></td>    
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td>Thông báo</td>
+    <th id="message"></th>
+  </tr>
+</table>
+
+<script>
+function verifyNumero1(){
+	//init message
+	document.getElementById("message").innerHTML = "";
+    //verify number eligible
+    var num = parseFloat(document.getElementById("numero1").value);
+    if (isNaN(num)){
+        document.getElementById("message").innerHTML = "số thứ nhất không hợp lệ";
+        return false;
+    }
+    return true;
+}
+
+function verifyNumero2(){
+	//init message
+	document.getElementById("message").innerHTML = "";
+    //verify number eligible
+    var num = parseFloat(document.getElementById("numero2").value);
+    if (isNaN(num)){
+        document.getElementById("message").innerHTML = "số thứ hai không hợp lệ";
+        return false;
+    }
+    return true;
+}
+
+function verifyOperator(){
+	if (!document.getElementById("idSum").checked &&
+    	!document.getElementById("idSub").checked &&
+        !document.getElementById("idMul").checked &&
+        !document.getElementById("idDiv").checked)        
+    {
+  		document.getElementById("message").innerHTML = "chưa chọn phép tính";
+        return false;
+    }
+    return true;
+}
+
+function calcul(num1_value, num2_value){	     
+    var result = 0;
+	document.getElementById("message").innerHTML = "";
+    //start
+    switch (true){
+      case document.getElementById("idSum").checked:
+        result = num1_value + num2_value;
+        break;
+      case document.getElementById("idSub").checked:
+        result = num1_value - num2_value;
+        break;
+      case document.getElementById("idMul").checked:
+        result = num1_value * num2_value;
+        break;        	
+      default:
+        if (num2_value == 0){
+          textErr = document.createTextNode("không thể chia cho số 0");
+          document.getElementById("message").appendChild(textErr);
+		} 
+        result = num1_value / num2_value;              
+    }
+    return result;    
+}
+
+function process(){
+	document.getElementById("message").innerHTML = "function process";
+    //get number1
+	var num1 = parseFloat(document.getElementById("numero1").value);
+    
+    //get number2
+    var num2 = parseFloat(document.getElementById("numero2").value);
+	        
+    //init result
+	var result = 0;
+    
+	if (verifyOperator()){
+    	if (verifyNumero1() && verifyNumero2()){        
+    		result = calcul(num1, num2);
+        	document.getElementById("result").value = result;
+        }
+    }
+}
+
+</script>
+
+</body>
+</html>

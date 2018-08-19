@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LinkedIn CV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      background-color: #283e4a;
+      height: 60px;      
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    .footer {
+      background-color: initial;
+      color: red;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+    }
+    .img-responsive {
+      max-height: 35px;
+      max-width: 35px;
+      margin-top: -7px;      
+    }
+    .dropdown-header{
+      background-color: #f3f6f8;
+      border-top: 1px solid rgba(0,0,0,.15);
+      border-bottom: 1px solid rgba(0,0,0,.15);      
+      font-size: 18px;
+      color:rgba(0,0,0,.9);
+    }
+    .dropdown-menu{
+      width: 240px;
+    }
+
+    .avt-me{
+      float: left;      
+      border-radius: 50%;
+    }
+
+    .view-profile{
+      background-color:  rgba(152,216,244,.45);
+      color: #0073b1;
+      height: 32px;
+      width: 240px;
+      font-weight: 600;
+      font-size: 14px;
+      display: table-cell;
+      vertical-align: middle;  
+      border: none;    
+      transition-duration: 167ms;
+      transition-property: background-color, box-shadow, color;
+    }
+
+    .button{
+      border: none;
+      color: cyan;
+    }
+
+    .form-control{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      border: none;
+      margin-top: 0px;
+      background-color: #e1e9ee;  
+    }
+
+    .avt{
+      margin-top: -80px;
+      margin-left: 32px;
+      border-radius: 50%;      
+    }
+
+    .v1{
+      border-top: 1.2px solid rgb(180, 168, 168);   
+      margin-top: 20px;
+      margin-bottom: 20px;   
+    }
+
+    .v2{
+      border-top: 1px solid rgb(180, 168, 168);
+    }
+    
+    .vLeft{
+      border-left: 1.2px solid rgb(180, 168, 168);      
+    }
+    .vRight{
+      border-right: 1.2px solid rgb(180, 168, 168);      
+    }
+
+    .btn {
+      color: #0073b1;
+      background: white;
+      border-top: 1.2px solid rgb(180, 168, 168);
+      border-bottom: 1px solid rgb(180, 168, 168);      
+      left:30%;
+      width: 100%;      
+      height: 35px;
+      box-shadow: 0px 1px rgb(180, 168, 168);
+      border-radius: 0px;
+    }
+
+    .follow{
+      color: white;
+      font-size: 18px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      border: 1px solid #0073b1;
+      border-radius: 2px;
+      background-color: #0073b1;
+      width: 110px;
+      height: 37px;
+    }
+
+     .treePoints{
+      color: grey;
+      font-size: 18px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+      border: 1px solid grey;
+      border-radius: 2px;
+      background-color: white;
+      width: 45px;
+      height: 37px;
+    }
+
+
+    .showexp{
+      color: #0073b1;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+     .footer-text{
+      color: #0073b1;
+      font-size: 14px;
+      margin-bottom: 20px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: bold;
+    }
+    
+    .footer-text2{
+      color: #0073b1;
+      font-size: 10px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;    
+    }
+
+    .font-interest{
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 12px;
+      margin-left: -10px;
+      margin-bottom: 0px;
+      text-decoration: none;
+    }
+
+    .row{      
+      margin-top: 30px;
+      margin-bottom: 15px;            
+      outline: grey;
+    }
+    
+    .card{
+      margin-top: 15px;
+      margin-left: 25px;
+    }
+    .textCard{
+      font-size: 13px;
+      font-weight: bold;
+      color: black;
+      margin-left: 15px      
+    }
+
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" >
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="assets/logo.PNG" class="img-responsive" alt="logo"></a>
+    </div>
+    <form class="navbar-form navbar-left" action="/action_page.php">                                                       
+      <div class="input-group">          
+          <input type="text" class="form-control" placeholder="Search" name="search">          
+      </div>
+  </form>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">My Network</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Messaging</a></li>         
+        <li><a href="#">Notifications</a></li>         
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Me
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <div>
+                  <a href="#"><img src="assets/avt_me.png" class="avt-me" alt="avt-me" height="50px" width="50px"></a>
+                  <li style="font-size: 15px">Quy HO</a></li>
+                  <li>Senior Software Engineer at Capgemini Vietnam</li>
+                </div>
+                <button class="view-profile" href="#"><center>View profile</center></button>
+                <li class="dropdown-header">ACCOUNT</li>
+                <li><a href="#">Settings & Privacy</a></li>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Language</a></li>
+                <li class="dropdown-header">MANAGE</li>
+                <li><a href="#">Posts & Activity</a></li>
+                <li><a href="#">Job Postings</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Sign out</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Work</a></li>
+        <li style="margin-top: -6px"><a href="#"><center>Free Upgrade </br>to Premium</center></a></li>        
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container">    
+  <div class="row">
+      <div class="col-md-8 text-left"> 
+        <div> 
+          <img src="assets/coverphoto.jfif" alt="coverphoto" width="100%">   
+        </div>
+        <div> 
+          <img class="avt" src="assets/avt.jfif" alt="avt" width="20%">   
+        </div>
+      </div>
+  </div>
+  <div class="row">      
+    <div class ="col-md-4 text-left">
+      <p style="font-size: 25px">Jeff Weiner</p>
+      <p style="font-size: 18px">CEO at LinkedIn</p>
+      <p style="font-size: 12.5px">San Francisco Bay Area</p>
+      <button class="follow" onclick="follow()" id="btnFollow">Follow</button>
+      <button class="treePoints">...</button>
+    </div>                    
+    <div class ="col-md-4 text-left">
+      <div style="margin-left: 25px">
+      <a class="textCard" href="#"><img style="float:left" src="assets/linkedin.PNG" alt="linkedin" width="22px" height="22px">LinkedIn</a>
+      </div>      
+      <div class="card">
+        <a class="textCard" href="#"><img style="float:left" src="assets/school.PNG" alt="school" width="22px" height="22px">The Wharton School</a>
+      </div>
+      <div class="card">
+        <a class="textCard" href="#"><img style="float:left" src="assets/contactinfo.PNG" alt="contactinfo" width="22px" height="22px">See contact info</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class ="col-md-8">      
+      <div class="v1"></div>             
+        <div class="content">
+          <p>Internet executive with over 20 years of experience, including general management of mid to large size organizations, corporate development, product development, business operations, and strategy.</p>
+
+          <p>Currently CEO at LinkedIn, the web's largest and most powerful network of professionals.</p>
+          <div class="collapse" id="showmore">
+            <p>Prior to LinkedIn, was an Executive in Residence at Accel Partners and Greylock Partners. Primarily focused on advising the leadership teams of the firm's existing consumer technology portfolio companies while also working closely with the firm’s partners to evaluate new investment opportunities.</p>
+            
+            <p>Previously served in key leadership roles at Yahoo! for over seven years, most recently as the Executive Vice President of Yahoo!'s Network Division managing Yahoo's consumer web product portfolio, including Yahoo's Front Page, Mail, Search, and Media products.</p>
+            
+            <p>Specialties: general management, corporate development, product development, business operations, strategy, product marketing, non-profit governance</p>
+          </div>
+        <div>
+          <center>
+            <button class="btn" data-toggle="collapse" data-target="#showmore" onclick="showless()" id="show">Show more</button>                                 
+          </center>             
+        </div>     
+      </div>
+    </div> 
+  </div>
+  <div class="row">
+    <div class ="col-md-1"><h3><b>Experience</b></h3></div>
+  </div>
+  <!experience LinkedIn>
+  <div class="row">
+    <div class ="col-md-1">
+      <img src="assets/ceo-linkedin.PNG">
+    </div>
+    <div class ="col-md-6">
+      <p style="margin-bottom: 5px"><b>CEO</b></p>
+      <p style="margin-bottom: 3px">LinkedIn</p>
+      <p style="margin-bottom: 7px">Dec 2008 - Present . 9 yrs 9 mos</p>
+      <p style="margin-bottom: 7px">Connecting the world's professionals to make them more productive and successful. Since joining the company in December 2008, LinkedIn has expanded its global platform to 23 languages and more than 30 offices around the world, grown its membership base from 33M to more than 500M, and increased its revenue from $78M to over $4B in 2017.</p>
+      <a href="#"><img src="assets/ceo.PNG" width="100%"></a>
+    </div>
+    <div class ="col-md-1">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+      <p class="v2"></p>
+    </div>
+  </div>
+  <!Experience Intuit>
+  <div class="row">
+    <div class ="col-md-1">
+      <img src="assets/intuit.PNG">
+    </div>
+    <div class ="col-md-6">
+      <p style="margin-bottom: 5px"><b>Member, Board Directors</b></p>
+      <p style="margin-bottom: 3px">Intuit</p>
+      <p style="margin-bottom: 7px">Apr 2012 - Present . 6 yrs 5 mos</p>
+      <p style="margin-bottom: 7px">Mountain View, CA</p>
+      <p style="margin-bottom: -7px">With revenue of $4B+ and approximately 8,000 employees, Intuit is a leading provider of innovative business and financial management solutions for small and medium-sized businesses, consumers, accounting professionals and financial institutions.</p>        
+    </div>
+    <div class ="col-md-1">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+      <p class="v2"></p>
+    </div>
+  </div>
+  <!Experience donors>
+  <div class="row">
+    <div class ="col-md-1">
+      <img src="assets/donors.PNG">
+    </div>
+    <div class ="col-md-6">
+      <p style="margin-bottom: 5px"><b>Member, Board Directors</b></p>
+      <p style="margin-bottom: 3px">DonorsChoose</p>
+      <p style="margin-bottom: 7px">2007 - Present . 11 yrs</p>      
+      <p style="margin-bottom: -7px">One of the web's leading philanthropic marketplaces, designed to enable teachers to upload classroom projects in need of funding, and for anyone to select and fund a project.</p>        
+    </div>
+    <div class ="col-md-1">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+      <p class="v2"></p>
+    </div>
+  </div>
+  <!other exp>
+  <div class="collapse" id="showmore3exp">
+    <!Venture exp>
+    <div class="row">
+      <div class ="col-md-1">
+        <img src="assets/venture.PNG">
+      </div>
+      <div class ="col-md-6">
+        <p style="margin-bottom: 5px"><b>Member, Advisory Board</b></p>
+        <p style="margin-bottom: 3px">Venture For America</p>
+        <p style="margin-bottom: 7px">2012 - Present . 6 yrs</p>      
+        <p style="margin-bottom: -7px">Innovative fellowship program that places top college graduates in start-ups for two years in low-cost U.S. cities to generate job growth and train the next generation of entrepreneurs.</p>        
+      </div>
+      <div class ="col-md-1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
+        <p class="v2"></p>
+      </div>
+    </div>
+    <!Malaria exp>
+    <div class="row">
+      <div class ="col-md-1">
+        <img src="assets/malaria.PNG">
+      </div>
+      <div class ="col-md-6">
+        <p style="margin-bottom: 5px"><b>Member, Board of Directors</b></p>
+        <p style="margin-bottom: 3px">Malaria No More</p>
+        <p style="margin-bottom: 7px">2007 - Dec 2015 . 8 yrs</p>      
+        <p style="margin-bottom: -7px">Non-profit organization with the mission to eradicate the millions of preventable and treatable deaths due to malaria. Working in conjunction with the United Nations Millennium Development Goals.</p>        
+      </div>
+      <div class ="col-md-1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
+        <p class="v2"></p>
+      </div>
+    </div>
+    <!Accel exp>
+    <div class="row">
+      <div class ="col-md-1">
+        <img src="assets/accel.PNG">
+      </div>
+      <div class ="col-md-6">
+        <p style="margin-bottom: 5px"><b>Executive in Residence</b></p>
+        <p style="margin-bottom: 3px">Accel Partners</p>
+        <p style="margin-bottom: 7px">Sep 2008 - Jun 2009 . 10 mos</p>      
+      </div>
+      <div class ="col-md-1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
+        <p class="v2"></p>
+      </div>
+    </div>
+  <!show Exp>
+  </div>
+  <div class="row">
+    <div class ="col-md-4">      
+      <div>
+        <a href="#showmore3exp" class="showexp" data-toggle="collapse" onclick="showfew()" id="showfew">Show 3 more experiences</a>                                 
+      </div>     
+    </div>
+  </div> 
+
+  <div class="row"></div>
+  <div class="row"></div>
+
+  <div class="row">    
+    <div class="col-md-8">
+      <p class="v2"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class ="col-md-1"><h3><b>Interests</b></h3></div>
+  </div>
+  <div class="row">
+    <div class ="col-md-1">
+      <div>
+        <img src="assets/consious.PNG" alt="consious" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#">Conscious Business Friends?</br></a>
+        <p class="font-interest">16,139 members</p>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div>
+        <img src="assets/intuit-interest.PNG" alt="intuit-interest" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#" >Intuit</br></a>
+        <p class="font-interest">175,469 followers</p>
+      </div>    
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <div>
+        <img src="assets/yahoo.PNG" alt="yahoo" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#" >Yahoo</br></a>
+        <p class="font-interest">15,731 members</p>
+      </div>
+    </div>      
+    <div class ="col-md-1">
+      <div>
+        <img src="assets/amazon.PNG" alt="amazon" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#" >Amazon</br></a>
+        <p class="font-interest">5,575,133 followers</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <div>
+        <img src="assets/satya.PNG" alt="satya" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#" >Satya Nadella</br></a>
+        <p class="font-interest">Satya NadellaSatya Nadella is a LinkedIn Influencer</br></p>
+        <p class="font-interest">CEO at Microsoft</br></p>
+        <p class="font-interest">5,077,472 followers</p>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div>
+        <img src="assets/arianna.PNG" alt="arianna" style="float:left" width="60px" height="60px">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div>
+        <a class="font-interest" style="font-size: 16px" href="#" >Arianna Huffington</br></a>   
+        <p class="font-interest">Arianna HuffingtonArianna Huffington is a LinkedIn Influencer</br></p>
+        <p class="font-interest">Founder and CEO at Thrive Global</br></p>
+        <p class="font-interest">7,724,469 followers</p>
+      </div>      
+    </div>  
+  </div>
+  <div class="row">    
+      <div class="col-md-8">
+        <a href="#" class="showexp"><center>See all</center></a>
+      </div>
+    </div>
+  <div class="row">    
+    <div class="col-md-8">
+      <p class="v2"></p>
+    </div>
+  </div>
+<hr>  
+<footer class="container">    
+  <div class="row">
+    <div class="col-md-4">
+      <img src="assets/linkedinFooter.PNG" alt="linkedinFooter">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <a href="#" class="footer-text">About</br></a>
+      <a href="#" class="footer-text">Careers</br></a>
+      <a href="#" class="footer-text">Advertising<span class="caret"></span></br></a>
+      <a href="#" class="footer-text">Mobile</br></a>
+    </div>
+    <div class="col-md-2">
+      <a href="#" class="footer-text">Talent Solutions</br></a>
+      <a href="#" class="footer-text">Marketing Solutions</br></a>
+      <a href="#" class="footer-text">Sale Solutions</br></a>
+      <a href="#" class="footer-text">Small Business</a>
+    </div>
+    <div class="col-md-2">
+      <a href="#" class="footer-text">Community Guidelines</br></a>
+      <a href="#" class="footer-text">Privacy & Terms <span class="caret"></span></br></a>
+      <a href="#" class="footer-text">Send feedback</br></a>
+      <a href="#" class="footer-text">Safety Center</a>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <img src="assets/questions.PNG" alt="questions" style="float:left">
+        <a style="font-size: 16px" href="#" class="footer-text">Questions?</br></a>
+        <p class="footer-text2">Visit our Help Center.</br></p>
+      </div>
+      <div>
+        <img src="assets/settings.PNG" alt="settings" style="float:left">
+        <a style="font-size: 16px" href="#" class="footer-text">Manage your account and privacy.</br></a>
+        <p class="footer-text2">Go to your Settings</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!script>
+<script>
+function showless(){    
+  var element = document.getElementById("show");  
+  var linktext = element.textContent;
+
+  if (linktext == "Show more") {
+    element.innerHTML = "Show less";
+  }
+  else{
+    element.innerHTML = "Show more";
+  }
+}
+
+function showfew(){
+  var element = document.getElementById("showfew");  
+  var linktext = element.textContent;
+
+  if (linktext == "Show 3 more experiences") {
+    element.innerHTML = "Show fewer experiences";
+  }
+  else{
+    element.innerHTML = "Show 3 more experiences";
+  }
+}
+
+function follow(){
+  document.getElementById("btnFollow").style.background="#ffffff";
+  document.getElementById("btnFollow").style.color="green";
+  document.getElementById("btnFollow").style.borderColor="white";
+  document.getElementById("btnFollow").style.fontWeight="bold";
+  document.getElementById("btnFollow").innerText = "Followed";
+}
+</script>
+</body>
+</html>
